@@ -24,3 +24,11 @@ x <- c(rep(0, n_0), rep(1, n_1))
 fake <- data.frame(x, y)
 fit <- stan_glm(y ~ x, data = fake, refresh = 0, prior_intercept = NULL, prior = NULL, prior_aux = NULL)
 fit
+
+library(tidyverse)
+ggplot(data = fake, mapping = aes(x = x, y = y)) +
+  geom_point() +
+  geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2])
+
+coef(fit)[1]
+coef(fit)[2]
